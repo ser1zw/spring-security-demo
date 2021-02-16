@@ -11,6 +11,10 @@
             @click="getRestrictedMessage">
             getRestrictedMessage
           </v-btn>
+          <v-btn
+            @click="logout">
+            Logout
+          </v-btn>
           <nuxt-link to="/login">Login page</nuxt-link>
           <nuxt-link to="/restricted">Restricted page</nuxt-link>
         </v-col>
@@ -69,7 +73,10 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    }
+    },
+    logout: function () {
+      this.$axios.$post('http://localhost:8080/api/logout')
+    },
   }
 }
 </script>

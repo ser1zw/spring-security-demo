@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -40,6 +41,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .failureHandler(getFailureHandler())
                 .permitAll();
         httpSecurity.logout()
+                .logoutUrl("/api/logout")
+                .logoutSuccessHandler(getLogoutSuccessHandler())
                 .permitAll();
 
         httpSecurity.csrf().disable();
@@ -67,6 +70,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private AuthenticationFailureHandler getFailureHandler() {
         return (request, response, authentication) -> {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        };
+    }
+
+    private LogoutSuccessHandler getLogoutSuccessHandler() {
+        return (request, response, authentication) -> {
+            response.setStatus(HttpStatus.OK.value());
         };
     }
 
