@@ -1,3 +1,3 @@
-export default function ({ store }) {
-  store.dispatch('auth/isLoggedIn')
+export default async function ({ store }) {
+  await store.dispatch('auth/isLoggedIn')
 }
