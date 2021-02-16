@@ -37,8 +37,6 @@ export default {
         params.append('username', this.loginId);
         params.append('password', this.password);
         let response = await this.$axios.$post('http://localhost:8080/api/login', params)
-        console.log(response)
-
         this.$router.push('/restricted')
       } catch (error) {
         console.log(error)
