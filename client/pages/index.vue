@@ -29,8 +29,8 @@ export default {
       let ret = await this.$axios.$get('http://localhost:8080/api/free')
       this.message = ret.message
     },
-    logout: function () {
-      this.$axios.$post('http://localhost:8080/api/logout')
+    logout: async function () {
+      await this.$store.dispatch('auth/logout')
     },
   }
 }

@@ -67,6 +67,10 @@ export default {
     credentials: true
   },
 
+  router: {
+    middleware: 'updateLoggedInStatus'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
