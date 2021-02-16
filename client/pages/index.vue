@@ -11,6 +11,8 @@
             @click="getRestrictedMessage">
             getRestrictedMessage
           </v-btn>
+          <nuxt-link to="/login">Login page</nuxt-link>
+          <nuxt-link to="/restricted">Restricted page</nuxt-link>
         </v-col>
       </v-row>
     </v-container>
