@@ -33,7 +33,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .antMatchers("/api/free", "/h2-console/**").permitAll()
+                .antMatchers("/api/free", "/api/loginstatus", "/h2-console/**").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.formLogin()
                 .loginPage("/api/login")

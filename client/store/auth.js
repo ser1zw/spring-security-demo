@@ -10,14 +10,9 @@ export const mutations = {
 
 export const actions = {
   async isLoggedIn({ commit }) {
-    let isLoggedIn = false
-    try {
-      await this.$axios.$get('http://localhost:8080/api/restricted')
-      isLoggedIn = true
-    } catch (error) {
-    }
-    commit('setLoggedInStatus', isLoggedIn)
-    return isLoggedIn
+    let response = await this.$axios.$get('http://localhost:8080/api/loginstatus')
+    commit('setLoggedInStatus', response.isLoggedIn)
+    return response.isLoggedIn
   },
 
   async logout({ commit }) {
