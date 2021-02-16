@@ -14,7 +14,14 @@ export const actions = {
     commit('setLoggedInStatus', response.isLoggedIn)
     return response.isLoggedIn
   },
-
+  async login({ commit }, { loginId, password }) {
+    const params = new URLSearchParams()
+    params.append('username', loginId)
+    params.append('password', password)
+    let response = await this.$axios.$post('http://localhost:8080/api/login', params)
+    commit('setLoggedInStatus', true)
+    return response
+  },
   async logout({ commit }) {
     await this.$axios.$post('http://localhost:8080/api/logout')
     commit('setLoggedInStatus', false)

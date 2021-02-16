@@ -33,12 +33,7 @@ export default {
   methods: {
     login: async function() {
       try {
-        const params = new URLSearchParams();
-        params.append('username', this.loginId);
-        params.append('password', this.password);
-        let response = await this.$axios.$post('http://localhost:8080/api/login', params)
-        console.log(response)
-
+        await this.$store.dispatch('auth/login', { loginId: this.loginId, password: this.password })
         this.$router.push('/restricted')
       } catch (error) {
         console.log(error)
